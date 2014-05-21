@@ -32,6 +32,12 @@ class PM25:
 
     def temp(self):
         return self._cur_temp
+
+    def key_pollutant(slef):
+    	if self._cur_pm25 > self._cur_pm10:
+    		return "PM2.5=%s" % self._cur_pm25
+    	else:
+    		return "PM10 =%s" % self._cur_pm10
     
     def getjson(self):
         data = { 'PM25':self._cur_pm25, 
@@ -83,7 +89,7 @@ class QueryPM25(tornado.web.RequestHandler):
         self.write("<br>The RealTime AQI of %s <br>" % city.capitalize() )
         print query.pm25()
         self.write( "<br>PM2.5=%s, Temperature=%s<br>" % (query.pm25(), query.temp() ) )
-        self.write( '<br>' )
+        self.write( '<br>Key Pollutant is %s <br>' % query.key_pollutant() )
         self.write( query.getjson() )
         
         
