@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+#
+# Note: Setup on AWS EC2 Linux Server
+# App can get the PM2.5 JSON data from the URL: http://ec*-*-*-*-*.XX-XX-X.compute.amazonaws.com:8888/{CityName}
+#
 import tornado.ioloop
 import tornado.web
 
@@ -56,7 +60,7 @@ class PM25:
         return json.dumps(data,skipkeys=True)
 
     def run(self, city):
-        url = 'http://aqicn.org/city/%s/' % city
+        url = 'http://aqicn.org/city/%s/' % city   #http://aqicn.org/city/shanghai/
         print "URL:%s" % url
         r = requests.get(url)
         if r.status_code == 200:
