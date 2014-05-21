@@ -11,7 +11,7 @@ import tornado.web
 import simplejson as json
 import pickle
 
-import requests
+import requesocks as requests
 import re
 from bs4 import BeautifulSoup
 
@@ -62,7 +62,9 @@ class PM25:
     def run(self, city):
         url = 'http://aqicn.org/city/%s/' % city   #http://aqicn.org/city/shanghai/
         print "URL:%s" % url
-        r = requests.get(url)
+        session = requests.session()
+        session.proxies = {'http': 'http://**:****@135.245.**.**:8000'}
+        r = session.get(url)
         if r.status_code == 200:
             soup = BeautifulSoup(r.text)
             self._cur_pm25 = soup.findAll(align="center", id=re.compile("cur_pm25"))[0].text
