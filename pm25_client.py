@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# Author: Yang Sen C
+# Data  : 2014/06/22
 
 #import json
 #import pickle
